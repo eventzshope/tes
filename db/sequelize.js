@@ -1,16 +1,16 @@
 const { DataTypes, Sequelize } = require("sequelize");
+require('dotenv').config()
 
-const sequelize = new Sequelize("bql3rhfld479jnsds3kj", "uiaamrqiqazzm6hs", "bql3rhfld479jnsds3kj", {
-  host: "bql3rhfld479jnsds3kj-mysql.services.clever-cloud.com",
-  port: 3306,
-  dialect: "mysql",
-  logging: false,
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  dialect: process.env.DB_DIALECT,
 });
 
 sequelize
   .authenticate()
   .then((_) => "connexion reussir")
-  .catch((error) => console.log(error));
+  .catch((error) => console.log("ERRUR DE CONNEXION "+error));
 
 
 
